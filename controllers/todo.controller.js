@@ -3,11 +3,7 @@ const Todo = require('../models/todo.model.js');
 
 exports.createTodo = async (req, res, next) => {
     try {
-        const { title, description } = req.body;
-        const todo = new Todo({
-            title,
-            description,
-        });
+        const todo = new Todo(req.body);
         const data = await todo.save();
         res.status(201).json(data);
     } catch (error) {
@@ -41,7 +37,9 @@ exports.getTodoById = async (req, res) => {
 exports.updateTodo = async (req, res) => {
     try {
         const { title, description , completed} = req.body;
-        const todo = await Todo.findOneAndUpdate({ _id: req.params.id },
+        
+        const todo = await Todo.findOneAndUpdate({ _id: req.params.id,
+        },
             { title, description ,completed },
             { new: true }
     );

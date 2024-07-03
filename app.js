@@ -2,16 +2,15 @@ const express = require("express")
 const connectDB = require("./config/db.js")
 const cors = require("cors")
 const app = express();
-
+const cookieParser = require('cookie-parser')
 // Connect Database
 connectDB()
 
 // Middleware
 app.use(cors())
 app.use(express.json({ extended: false }));
-
+app.use(cookieParser());
 // Define Routes
-// app.use('/api/todos', require('./routes/todos'));
 app.use('/api/auth', require('./routes/user.route.js'));
 app.use('/api/todo', require('./routes/todo.route.js'));
 
