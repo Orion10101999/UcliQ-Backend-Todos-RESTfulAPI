@@ -13,6 +13,7 @@ app.use(express.json({ extended: false }));
 // Define Routes
 // app.use('/api/todos', require('./routes/todos'));
 app.use('/api/auth', require('./routes/user.route.js'));
+app.use('/api/todo', require('./routes/todo.route.js'));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${process.env.PORT}`));
